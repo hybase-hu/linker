@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %} My Pages{% endblock title %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h3>
+            <span class="badge bg-warning text-dark text-wrap">Please, shared link use <a href="https://tinyurl.com" target="_blank">tinyurl.com</a> for pretty link</span>
+        </h3>
+    </div>
+</div>
+
+<label class="form-control bg-dark text-light my-5">Hy, your session id : {{uid}}</label>
+
+
+
+<div class="row my-2">
+    <div class="col text-end">
+        <a href="{% url 'create_web_page' %}" class="btn btn-success w-100 py-2">Create</a>
+    </div>
+</div>
+
+
+
+{% for page in pages %}
+    <hr>
+    <div class="row">
+        <div class="col-auto"><a href="{% url 'show_request' page.id %}" class="text-light"><i class="fa-regular fa-eye"></i></a></div>
+        <div class="col-lg-5 text-light" onclick="copyBtn('{{request.build_absolute_uri }}link/{{page.link}}')">{{request.build_absolute_uri }}link/{{page.link}}</div>
+        <div class="col-lg-3">{{page.href_to}}</div>
+        <div class="col-lg-2">{{page.web_requests.all.count}}</div>
+        <div class="col text-end"><a href="{% url 'remove_web_page' page.pk %}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a></div>
+    </div>
+
+{% empty %}
+    <h3 class="text-center text-light">Not created web pages, create now </h3>
+{% endfor %}
+
+{% endblock content %}

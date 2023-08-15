@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %} hy hi{% endblock title %}
+{% block content %}
+
+<h3 class="text-secondary">Create new link to page</h3>
+<form action="" method="post">
+    {% csrf_token %}
+    <label class="form-control bg-dark text-light">use Http://xxx.zy or Https://xxx.zy format</label>
+    {{form}}
+    <button type="submit" class="btn btn-success w-100 my-2">SAVE</button>
+</form>
+
+
+
+{% endblock content %}

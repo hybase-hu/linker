@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %} WebRequests{% endblock title %}
+{% block content %}
+<h3 class="text-secondary text-break">Your Session : {{uid}}</h3>
+<h5 class="text-secondary text-break">web page url: {{ request.scheme }}://{{ request.META.HTTP_HOST }}/link/{{web_page.link}}</h5>
+
+
+
+
+
+{% for obj in objs %}
+    <hr>
+    <div class="row">
+        <div class="col-lg-3 text-light">
+            <div>{{obj.created_at|timesince}}</div>
+            <div class="">{{obj.ip}}</div>
+            <div class="">{{obj.country}}</div>
+            <div class="">{{obj.city}}</div>
+            <div class="">{{obj.isp}}</div>
+            <div class="">{{obj.region_name}}</div>
+        </div>
+        <div class="col col-lg-6 text-break">{{obj.header}}</div>
+
+
+
+
+        <div class="col text-end">
+            <a href="{% url 'remove_request' obj.pk %}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
+        </div>
+    </div>
+
+
+{% endfor %}
+{% endblock content %}
